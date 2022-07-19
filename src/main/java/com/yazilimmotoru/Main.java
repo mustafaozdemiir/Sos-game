@@ -43,7 +43,7 @@ public class Main {
         int verticalScore = 0;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size - 2; j++) {
-                if (game[i][j] == "S" && game[i][j + 1] == "O" && game[i][j + 2] == "S") {
+                if (game[i][j].equals("S") && game[i][j + 1].equals("O") && game[i][j + 2].equals("S")) {
                     verticalScore++;
                 }
             }
@@ -52,7 +52,7 @@ public class Main {
         int horizantalScore = 0;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size - 2; j++) {
-                if (game[j][i] == "S" && game[j + 1][i] == "O" && game[j + 2][i] == "S") {
+                if (game[j][i].equals("S") && game[j + 1][i].equals("O") && game[j + 2][i].equals("S")) {
                     horizantalScore++;
                 }
             }
@@ -61,7 +61,7 @@ public class Main {
         int diagonalScore = 0;
         for (int i = 0; i < size - 2; i++) {// soldan sağa
             for (int j = 0; j < size - 2; j++) {
-                if (game[i][j] == "S" && game[i + 1][j + 1] == "O" && game[i + 2][j + 2] == "S") {
+                if (game[i][j].equals("S") && game[i + 1][j + 1].equals("O") && game[i + 2][j + 2].equals("S")) {
                     diagonalScore++;
                 }
             }
@@ -69,7 +69,7 @@ public class Main {
 
         for (int i = 0; i < size - 2; i++) {// sağdan sola
             for (int j = size - 1; j > 1; j--) {
-                if (game[i][j] == "S" && game[i + 1][j - 1] == "O" && game[i + 2][j - 2] == "S") {
+                if (game[i][j].equals("S") && game[i + 1][j - 1].equals("O") && game[i + 2][j - 2].equals("S")) {
                     diagonalScore++;
                 }
             }
@@ -127,7 +127,7 @@ public class Main {
     }
 
     public static void play(boolean player, int line, int column, int dimension) { // The move is being made. If the field is not empty, a warning is given and a value is requested again. When a move is made, the leaderboard and the game's final state matrix are printed.
-        if (line <= dimension && column <= dimension && game[line - 1][column - 1].equals("?")) {
+        if (line > 0 && column > 0 && line <= dimension && column <= dimension && game[line - 1][column - 1].equals("?")) {
             game[line - 1][column - 1] = player ? "S" : "O";
             printPositions(dimension, game);
             printScore();
@@ -165,7 +165,7 @@ public class Main {
     public static boolean isEnd() { // Determining whether there are any remaining moves in the game matrix.
         for (int i = 0; i < dimension; i++) {
             for (int j = 0; j < dimension; j++) {
-                if (game[i][j] == "?") {
+                if (game[i][j].equals("?")) {
                     isEnd = false;
                     return false;
                 }
