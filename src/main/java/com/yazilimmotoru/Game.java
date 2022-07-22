@@ -1,5 +1,6 @@
 package com.yazilimmotoru;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -107,11 +108,17 @@ public class Game {
     public static void setDimension() { // The game size is taken from the user. If it is not between 3 and 7, it is requested from the user again.
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the game size.");
-        dimension = scanner.nextInt();
-        if (dimension < 3 || dimension > 7) {
-            System.out.println("Must be between 3 and 7");
+        try {
+            dimension = scanner.nextInt();
+            if (dimension < 3 || dimension > 7) {
+                System.out.println("The game size must be between 3 and 7.");
+                setDimension();
+            }
+        } catch (InputMismatchException inputMismatchException) {
+            System.out.println("Please enter a number.");
             setDimension();
         }
+
     }
 
     public static void startInputs() { // The game size is taken from the user. It is determined which letter the random user will receive.
