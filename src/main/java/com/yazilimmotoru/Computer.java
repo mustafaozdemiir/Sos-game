@@ -10,12 +10,14 @@ public class Computer {
         Random random = new Random();
         int lineNumber = random.nextInt(Game.dimension);
         int columnNumber = random.nextInt(Game.dimension);
-        if (Game.game[lineNumber][columnNumber].equals("?")) {
-            System.out.println("------------");
-            System.out.println("Computer [" + (!Game.playerLetter ? "S" : "O") + "]");
-            Game.play(player, lineNumber + 1, columnNumber + 1, Game.dimension);
-        } else {
-            randomMove(player);
+        if (!Game.isEnd) {
+            if (Game.game[lineNumber][columnNumber].equals("?")) {
+                System.out.println("------------");
+                System.out.println("Computer [" + (!Game.playerLetter ? "S" : "O") + "]");
+                Game.play(player, lineNumber + 1, columnNumber + 1, Game.dimension);
+            } else {
+                randomMove(player);
+            }
         }
     }
 
